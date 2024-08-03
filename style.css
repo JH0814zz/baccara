@@ -14,26 +14,26 @@ body {
 .container {
     text-align: center;
     background-color: rgba(52, 73, 94, 0.8);
-    padding: 30px;
+    padding: 20px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    max-width: 800px;
+    max-width: 90%;
     width: 100%;
 }
 
 h1 {
-    font-size: 3em;
-    margin-bottom: 30px;
+    font-size: 2.5em;
+    margin-bottom: 20px;
     color: #ffd700;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 1.5px 1.5px 3px rgba(0,0,0,0.5);
 }
 
 .balance-board {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 30px;
-    padding: 15px;
+    margin-bottom: 20px;
+    padding: 10px;
     background-color: rgba(0,0,0,0.2);
     border-radius: 10px;
 }
@@ -41,16 +41,17 @@ h1 {
 #balance {
     font-size: 1.2em;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
 #free-money-button {
-    padding: 10px 20px;
+    padding: 10px 15px;
     background-color: #27ae60;
     border: none;
     border-radius: 5px;
     color: white;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     transition: all 0.3s ease;
 }
 
@@ -61,17 +62,17 @@ h1 {
 }
 
 .betting-board {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .bet-button {
-    padding: 12px 24px;
+    padding: 10px 20px;
     background-color: #3498db;
     border: none;
     border-radius: 5px;
     color: white;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     margin: 5px;
     transition: all 0.3s ease;
 }
@@ -83,25 +84,26 @@ h1 {
 }
 
 #bet-amount {
-    padding: 12px;
-    font-size: 16px;
+    padding: 10px;
+    font-size: 14px;
     border-radius: 5px;
     border: 1px solid #3498db;
-    margin-top: 15px;
-    width: 150px;
+    margin-top: 10px;
+    width: 120px;
 }
 
 .game-board {
     display: flex;
-    justify-content: space-around;
-    margin: 30px 0;
+    flex-direction: column;
+    margin: 20px 0;
 }
 
 .hand {
     background-color: rgba(149, 165, 166, 0.2);
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
-    width: 45%;
+    width: 100%;
+    margin-bottom: 10px;
     transition: all 0.3s ease;
 }
 
@@ -111,13 +113,13 @@ h1 {
 }
 
 #deal-button {
-    padding: 12px 24px;
+    padding: 10px 20px;
     background-color: #e74c3c;
     border: none;
     border-radius: 5px;
     color: white;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     transition: all 0.3s ease;
 }
 
@@ -135,10 +137,10 @@ h1 {
 }
 
 #result {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
-    margin-top: 20px;
-    padding: 15px;
+    margin-top: 15px;
+    padding: 10px;
     background-color: rgba(0,0,0,0.2);
     border-radius: 10px;
     transition: all 0.3s ease;
@@ -147,8 +149,8 @@ h1 {
 .card {
     background-color: white;
     color: black;
-    padding: 10px;
-    margin: 5px;
+    padding: 8px;
+    margin: 4px;
     border-radius: 5px;
     display: inline-block;
     font-weight: bold;
@@ -164,7 +166,7 @@ h1 {
 }
 
 .game-history {
-    margin-top: 20px;
+    margin-top: 15px;
     padding: 10px;
     background-color: rgba(0,0,0,0.2);
     border-radius: 10px;
@@ -183,7 +185,6 @@ h1 {
         flex-direction: column;
     }
     .hand {
-        width: 100%;
         margin-bottom: 20px;
     }
 }
