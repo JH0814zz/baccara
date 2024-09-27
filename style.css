@@ -60,35 +60,44 @@ h1 {
     box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
 }
 
-.betting-board {
+.betting-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
     margin-bottom: 30px;
 }
 
-.bet-button {
-    padding: 12px 24px;
-    background-color: #3498db;
+.bet-area {
+    padding: 20px;
+    background-color: #34495e;
+    color: white;
+    border-radius: 5px;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bet-area:hover {
+    background-color: #2c3e50;
+}
+
+.chips-container {
+    margin-bottom: 20px;
+}
+
+.chip {
+    padding: 15px 25px;
+    background-color: #f39c12;
     border: none;
     border-radius: 5px;
     color: white;
+    font-size: 1.2em;
     cursor: pointer;
-    font-size: 16px;
     margin: 5px;
     transition: all 0.3s ease;
 }
 
-.bet-button:hover {
-    background-color: #2980b9;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
-}
-
-#bet-amount {
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #3498db;
-    margin-top: 15px;
-    width: 150px;
+.chip:hover {
+    background-color: #e67e22;
 }
 
 .game-board {
@@ -102,14 +111,13 @@ h1 {
     padding: 20px;
     border-radius: 10px;
     width: 45%;
-    transition: all 0.3s ease;
-    text-align: center; /* 중앙 정렬 */
+    text-align: center;
 }
 
 .hand h2 {
     font-size: 1.5em;
     margin-bottom: 10px;
-    color: #ffd700; /* 제목 색상 */
+    color: #ffd700;
 }
 
 #deal-button {
@@ -125,15 +133,11 @@ h1 {
 
 #deal-button:hover {
     background-color: #c0392b;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
 }
 
 #deal-button:disabled {
     background-color: #95a5a6;
     cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
 }
 
 #result {
@@ -144,48 +148,4 @@ h1 {
     background-color: rgba(0,0,0,0.2);
     border-radius: 10px;
     transition: all 0.3s ease;
-}
-
-.card {
-    background-color: white;
-    color: black;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
-    display: inline-block;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.hearts, .diamonds {
-    color: red;
-}
-
-.clubs, .spades {
-    color: black;
-}
-
-.game-history {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: rgba(0,0,0,0.2);
-    border-radius: 10px;
-}
-
-.history-item {
-    display: inline-block;
-    margin: 5px;
-    padding: 5px 10px;
-    background-color: rgba(255,255,255,0.1); 
-    border-radius: 5px; 
-} 
-
-@media (max-width: 600px) {
-    .game-board {
-        flex-direction: column;
-    }
-    .hand {
-        width: 100%;
-        margin-bottom: 20px;
-    }
 }
