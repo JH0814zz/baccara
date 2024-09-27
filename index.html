@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
     <div class="container">
         <h1>Baccarat</h1>
@@ -16,45 +14,31 @@
             <p id="balance">Balance: 0</p>
             <button id="free-money-button">무료 돈받기</button>
         </div>
-
-        <!-- 베팅 컨테이너 -->
-        <div class="betting-container">
-            <div class="bet-area" id="player-bet-area" data-bet="player">Player</div>
-            <div class="bet-area" id="tie-bet-area" data-bet="tie">Tie</div>
-            <div class="bet-area" id="banker-bet-area" data-bet="banker">Banker</div>
+        <div class="betting-board">
+            <h2>Place Your Bet</h2>
+            <button class="bet-button" data-bet="player">Bet on Player</button>
+            <button class="bet-button" data-bet="banker">Bet on Banker</button>
+            <button class="bet-button" data-bet="tie">Bet on Tie</button>
+            <input type="number" id="bet-amount" placeholder="Bet Amount">
         </div>
-
-        <!-- 칩 선택 -->
-        <div class="chips-container">
-            <button class="chip" data-value="1000">1000</button>
-            <button class="chip" data-value="2000">2000</button>
-            <button class="chip" data-value="5000">5000</button>
-            <button class="chip" data-value="10000">10000</button>
-            <button class="chip" data-value="50000">50000</button>
-        </div>
-
         <div class="game-board">
             <div class="hand" id="player-hand">
-                <h2>Player</h2>
+                <h2>Player Hand</h2>
                 <div id="player-cards"></div>
                 <p id="player-score">Score: 0</p>
             </div>
             <div class="hand" id="banker-hand">
-                <h2>Banker</h2>
+                <h2>Banker Hand</h2>
                 <div id="banker-cards"></div>
                 <p id="banker-score">Score: 0</p>
             </div>
         </div>
-
         <div class="controls">
             <button id="deal-button" disabled>Deal</button>
         </div>
-
         <p id="result"></p>
         <div id="game-history" class="game-history"></div>
     </div>
-
     <script src="script.js"></script>
 </body>
-
 </html>

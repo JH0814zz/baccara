@@ -1,11 +1,10 @@
-// 기존 변수는 그대로 유지 
+// 기존 변수는 그대로 유지
 let deck = [];
 let playerHand = [];
 let bankerHand = [];
 let playerBet = '';
 let betAmount = 0;
 let balance = 0;
-
 const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
 const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 let gameHistory = [];
@@ -66,31 +65,21 @@ function getSuitSymbol(suit) {
     }
 }
 
-// 베팅 금액을 설정하는 함수
-function setBet(amount) {
-    if (amount > balance) {
-        alert('잔고가 부족합니다.');
-        return;
-    }
-    betAmount = amount;
-    document.getElementById('result').innerText = `${playerBet.charAt(0).toUpperCase() + playerBet.slice(1)}에 ${betAmount}원이 배팅되었습니다.`;
-    document.getElementById('deal-button').disabled = false; // 베팅 후 딜 버튼 활성화
-}
-
 // 베팅 설정
-document.querySelectorAll('.bet-container').forEach(container => {
-    container.addEventListener('click', (e) => {
-        playerBet = e.currentTarget.getAttribute('data-bet');
-        document.querySelectorAll('.bet-container').forEach(c => c.classList.remove('active'));
-        container.classList.add('active');
-    });
-});
-
-// 칩 버튼 클릭 이벤트
-document.querySelectorAll('.chip-button').forEach(button => {
+document.querySelectorAll('.bet-button').forEach(button => {
     button.addEventListener('click', (e) => {
-        const chipAmount = parseInt(e.target.getAttribute('data-chip'));
-        setBet(chipAmount);
+        playerBet = e.target.getAttribute('data-bet');
+        betAmount = parseInt(document.getElementById('bet-amount').value);
+        if (isNaN(betAmount) || betAmount <= 0) {
+            document.getElementById('result').innerText = '베팅할 금액을 입력해주세요.';
+            return;
+        }
+        if (betAmount > balance) {
+            document.getElementById('result').innerText = '잔고가 부족합니다.';
+            return;
+        }
+        document.getElementById('result').innerText = `${playerBet.charAt(0).toUpperCase() + playerBet.slice(1)}에 ${betAmount}원이 배팅되었습니다.`;
+        document.getElementById('deal-button').disabled = false; // 베팅 후 딜 버튼 활성화
     });
 });
 
@@ -132,43 +121,55 @@ function playGame() {
         alert('먼저 베팅을 해주세요!');
         return;
     }
+
+    betAmount = parseInt(document.getElementById('bet-amount').value);
     if (isNaN(betAmount) || betAmount <= 0 || betAmount > balance) {
         alert('유효한 베팅 금액을 입력하세요.');
         return;
     }
+
     balance -= betAmount; // 딜 시작 시 베팅 금액 차감
     document.getElementById('balance').innerText = `Balance: ${balance}`;
+
     if (balance <= 0) {
         alert('잔고가 부족합니다. 무료 돈 받기를 클릭하세요.');
         document.getElementById('deal-button').disabled = true; // 잔고 부족 시 딜 버튼 비활성화
         return;
     }
+
     initializeGame();
+
     setTimeout(() => {
         // 플레이어의 첫 번째 카드 분배
         playerHand.push(deck.pop());
         displayHand(playerHand, 'player-cards');
     }, 1000);
+
     setTimeout(() => {
         // 뱅커의 첫 번째 카드 분배
         bankerHand.push(deck.pop());
         displayHand(bankerHand, 'banker-cards');
     }, 2000);
+
     setTimeout(() => {
         // 플레이어의 두 번째 카드 분배
         playerHand.push(deck.pop());
         displayHand(playerHand, 'player-cards');
     }, 3000);
+
     setTimeout(() => {
         // 뱅커의 두 번째 카드 분배
         bankerHand.push(deck.pop());
         displayHand(bankerHand, 'banker-cards');
+
         // 점수 계산
         const playerScore = calculateHandValue(playerHand);
         const bankerScore = calculateHandValue(bankerHand);
+
         // 점수 표시
         document.getElementById('player-score').innerText = `Score: ${playerScore}`;
         document.getElementById('banker-score').innerText = `Score: ${bankerScore}`;
+
         // 승부 판단
         resolveGame(playerScore, bankerScore);
     }, 4000);
@@ -201,12 +202,14 @@ async function handleAdditionalCards(playerScore, bankerScore) {
         displayHand(playerHand, 'player-cards');
         const newPlayerScore = calculateHandValue(playerHand);
         document.getElementById('player-score').innerText = `Score: ${newPlayerScore}`;
+
         // 추가 카드 처리 후 점수 확인
         if (newPlayerScore >= 8) {
             determineResult(newPlayerScore, bankerScore);
             return;
         }
     }
+
     // 뱅커의 추가 카드
     if (bankerScore <= 5) {
         await new Promise(resolve => setTimeout(resolve, 1000)); // 1초 지연
@@ -214,12 +217,14 @@ async function handleAdditionalCards(playerScore, bankerScore) {
         displayHand(bankerHand, 'banker-cards');
         const newBankerScore = calculateHandValue(bankerHand);
         document.getElementById('banker-score').innerText = `Score: ${newBankerScore}`;
+
         // 추가 카드 처리 후 점수 확인
         if (newBankerScore >= 8) {
             determineResult(calculateHandValue(playerHand), newBankerScore);
             return;
         }
     }
+
     // 최종 승부
     determineResult(calculateHandValue(playerHand), calculateHandValue(bankerHand));
 }
@@ -228,9 +233,7 @@ async function handleAdditionalCards(playerScore, bankerScore) {
 function determineResult(playerScore, bankerScore) {
     let result;
     if (playerScore > bankerScore) {
-        result
-
- = '플레이어 승리!';
+        result = '플레이어 승리!';
         if (playerBet === 'player') {
             balance += betAmount * 1.95;
         }
@@ -243,6 +246,7 @@ function determineResult(playerScore, bankerScore) {
         result = '무승부!';
         balance += betAmount; // 베팅 금액 반환
     }
+
     document.getElementById('balance').innerText = `Balance: ${balance}`;
     animateResult(result);
     gameHistory.unshift(result);
